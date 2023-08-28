@@ -1,9 +1,19 @@
-import unittest
+from unittest import TestCase
 
 from main.programming_interview_problems import ProgrammingInterviewProblems
 
 
-class TestProgrammingInterviewProblems(unittest.TestCase):
+class TestProgrammingInterviewProblems(TestCase):
+
+    def testProblem1InvalidInputNoNumberMissingCase(self):
+        prob1_arr = []
+        for i in range(1, 101):
+            prob1_arr.append(i)
+
+        try:
+            ProgrammingInterviewProblems.findMissingNumber(prob1_arr)
+        except ValueError as context:
+            self.assertTrue('Invalid input: there are no numbers missing.' in context.__str__())
 
     def testProblem1FirstNumberMissingCase(self):
         prob1_arr = []
@@ -31,7 +41,3 @@ class TestProgrammingInterviewProblems(unittest.TestCase):
 
         missing_number = ProgrammingInterviewProblems.findMissingNumber(prob1_arr)
         self.assertEqual(2, missing_number)
-
-
-if __name__ == '__main__':
-    unittest.main()
